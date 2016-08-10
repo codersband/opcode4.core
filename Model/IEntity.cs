@@ -1,4 +1,4 @@
-﻿namespace opcode4.core.Data
+﻿namespace opcode4.core.Model
 {
     public interface IEntity
     {

@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
@@ -41,8 +45,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\IEntity.cs" />
-    <Compile Include="Data\TEntity.cs" />
+    <Compile Include="Data\Criterias\Criteria.cs" />
+    <Compile Include="Data\Criterias\CustomPagingCriteria.cs" />
+    <Compile Include="Data\Criterias\ICriteria.cs" />
+    <Compile Include="Data\GDAO.cs" />
+    <Compile Include="Data\IDAO.cs" />
+    <Compile Include="Data\IRepository.cs" />
+    <Compile Include="Data\ITransaction.cs" />
+    <Compile Include="Data\Provider\IProviderable.cs" />
+    <Compile Include="Data\Provider\ProviderEntity.cs" />
+    <Compile Include="Helpers\Extensions.cs" />
+    <Compile Include="Helpers\JsonConverters\UnixDateTimeConverter.cs" />
+    <Compile Include="Helpers\Retry.cs" />
+    <Compile Include="Helpers\TActorUtils.cs" />
+    <Compile Include="IoCFactory.cs" />
+    <Compile Include="Model\IdentEntity.cs" />
+    <Compile Include="Model\IEntity.cs" />
+    <Compile Include="Model\Interfaces\Cache\ICacheProvider.cs" />
+    <Compile Include="Model\Interfaces\Cache\IStringSerializer.cs" />
+    <Compile Include="Model\Interfaces\ISmsSender.cs" />
+    <Compile Include="Model\Log\ILogWriter.cs" />
+    <Compile Include="Model\Log\LogDetailEntity.cs" />
+    <Compile Include="Model\Log\LogEntity.cs" />
+    <Compile Include="Model\Log\LogEventType.cs" />
+    <Compile Include="Model\OperationStatus.cs" />
+    <Compile Include="Model\TEntity.cs" />
     <Compile Include="Exceptions\EntityNotFoundException.cs" />
     <Compile Include="Exceptions\ExceptionCode.cs" />
     <Compile Include="Exceptions\CustomException.cs" />
@@ -53,10 +80,13 @@
     <Compile Include="Model\Identity\CustomPermissions.cs" />
     <Compile Include="Model\Identity\CustomPrincipal.cs" />
     <Compile Include="Model\Identity\Roles.cs" />
-    <Compile Include="Model\LogModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\opcode.ioc.lightinject\opcode.ioc.lightinject.csproj">
+      <Project>{9d95499c-19c8-44ed-94c2-520ffb05a791}</Project>
+      <Name>opcode.ioc.lightinject</Name>
+    </ProjectReference>
     <ProjectReference Include="..\opcode4.utilities\opcode4.utilities.csproj">
       <Project>{FBBA352B-37A6-45FB-BC0C-E3FC52FFE643}</Project>
       <Name>opcode4.utilities</Name>
@@ -67,6 +97,7 @@
     <None Include=".gitignore" />
     <None Include="LICENSE" />
     <None Include="package.json" />
+    <None Include="packages.config" />
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>

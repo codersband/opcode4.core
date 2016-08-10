@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Runtime.Serialization;
 using System.Security.Principal;
+using opcode4.core.Model.Log;
 
 namespace opcode4.core.Model.Identity
 {
@@ -9,24 +10,27 @@ namespace opcode4.core.Model.Identity
     public class CustomIdentity : IIdentity
     {
         [DataMember] 
-        private readonly ulong _actorID;
+        private readonly ulong _actorId;
 
         [DataMember]
-        private readonly string _actorName = String.Empty;
+        private readonly string _actorName = string.Empty;
 
         [DataMember]
-        private readonly ulong _providerID;
+        private readonly ulong _providerId;
 
         [DataMember]
         private readonly ArrayList _rolesList = new ArrayList();
 
-        bool IIdentity.IsAuthenticated { get {return (_rolesList.Count > 0);} }
+        [DataMember]
+        public LogEventType LogLevel { set; get; }
 
-        string IIdentity.AuthenticationType { get { return "aVayosoft"; } }
+        bool IIdentity.IsAuthenticated => (_rolesList.Count > 0);
 
-        public ulong ID { get { return _actorID; } }
-        public string Name { get { return _actorName; } }
-        public ulong ProviderID { get { return _providerID; } }
+        string IIdentity.AuthenticationType => "custom";
+
+        public ulong Id => _actorId;
+        public string Name => _actorName;
+        public ulong ProviderId => _providerId;
 
         internal bool IsInRole(string role) { return _rolesList.Contains(role); }
 
@@ -40,7 +44,7 @@ namespace opcode4.core.Model.Identity
 
         public CustomIdentity(ulong id, string actorName, string[] roles)
         {
-            this._actorID = id;
+            this._actorId = id;
             this._actorName = actorName;
             this._rolesList.Clear();
 
@@ -49,9 +53,9 @@ namespace opcode4.core.Model.Identity
 
         public CustomIdentity(ulong id, string actorName, ulong providerId, string[] roles)
         {
-            this._actorID = id;
+            this._actorId = id;
             this._actorName = actorName;
-            this._providerID = providerId;
+            this._providerId = providerId;
             this._rolesList.Clear();
 
             this._rolesList.AddRange(roles);

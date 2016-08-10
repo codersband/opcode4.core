@@ -42,6 +42,11 @@ namespace opcode4.core.Exceptions
 
         public CustomException(ExceptionCode code, string message, string tag)
             : base((int)code, message, tag) { }
+
+        public virtual string ToFormalString()
+        {
+            return $"[{Code}]:{Message}";
+        }
     }
 
     [DataContract]

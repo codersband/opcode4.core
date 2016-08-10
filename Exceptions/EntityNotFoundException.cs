@@ -1,4 +1,4 @@
-﻿using opcode4.core.Data;
+﻿using opcode4.core.Model;
 
 namespace opcode4.core.Exceptions
 {
