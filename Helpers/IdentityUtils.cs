@@ -7,7 +7,7 @@ using opcode4.core.Model.Log;
 
 namespace opcode4.core.Helpers
 {
-    public static class TActorUtils
+    public static class IdentityUtils
     {
         public static bool IsProviderable(Type type)
         {
@@ -16,39 +16,39 @@ namespace opcode4.core.Helpers
 
         public static bool UseProviderConstraint(Type type)
         {
-            var t = CurrentActor;
-            return t != null && !t.IsInRole($"{Roles.Items.ROOT}") && IsProviderable(type);
+            var t = CurrentIdentity;
+            return t != null && !t.IsInRole($"{IdentityRoles.Items.ROOT}") && IsProviderable(type);
         }
 
         public static bool IsInRole(string role)
         {
-            var t = CurrentActor;
+            var t = CurrentIdentity;
             return t != null && t.IsInRole(role);
         }
 
-        public static CustomIdentity CurrentActor => Thread.CurrentPrincipal.Identity as CustomIdentity;
+        public static CustomIdentity CurrentIdentity => Thread.CurrentPrincipal.Identity as CustomIdentity;
 
-        public static ulong ActorProviderId => CurrentActor?.ProviderId ?? 0;
+        public static long ProviderId => CurrentIdentity?.ProviderId ?? 0;
 
-        public static ulong ActorId => CurrentActor?.Id ?? 0;
+        public static long Id => CurrentIdentity?.Id ?? 0;
 
         public static string ActorName
         {
             get
             {
-                var identity = CurrentActor;
+                var identity = CurrentIdentity;
                 return identity != null ? identity.Name : string.Empty;
             }
         }
 
-        public static bool IsActorIdentity => ActorId > 0;
+        public static bool IsIdentityInitialized => Id > 0;
 
         public static bool IsAdministrator
         {
             get
             {
                 var identity = Thread.CurrentPrincipal.Identity as CustomIdentity;
-                return identity != null && identity.IsInRole($"{Roles.Items.ADMINISTRATOR}");
+                return identity != null && identity.IsInRole($"{IdentityRoles.Items.ADMINISTRATOR}");
             }
         }
 
@@ -56,14 +56,14 @@ namespace opcode4.core.Helpers
         {
             get
             {
-                var identity = CurrentActor;
-                return identity != null && identity.IsInRole($"{Roles.Items.ROOT}");
+                var identity = CurrentIdentity;
+                return identity != null && identity.IsInRole($"{IdentityRoles.Items.ROOT}");
             }
         }
 
         public static bool ShouldLog(LogEventType logLevel)
         {
-            var identity = CurrentActor;
+            var identity = CurrentIdentity;
             if (identity == null)
                 return true;
 

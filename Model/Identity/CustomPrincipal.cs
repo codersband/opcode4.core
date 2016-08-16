@@ -9,7 +9,7 @@ namespace opcode4.core.Model.Identity
     {
         readonly CustomIdentity _identityField;
 
-        IIdentity IPrincipal.Identity { get { return _identityField; } }
+        IIdentity IPrincipal.Identity => _identityField;
 
         bool IPrincipal.IsInRole(string role) { return _identityField.IsInRole(role); }
 

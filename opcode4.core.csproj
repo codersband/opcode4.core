@@ -57,7 +57,7 @@
     <Compile Include="Helpers\Extensions.cs" />
     <Compile Include="Helpers\JsonConverters\UnixDateTimeConverter.cs" />
     <Compile Include="Helpers\Retry.cs" />
-    <Compile Include="Helpers\TActorUtils.cs" />
+    <Compile Include="Helpers\IdentityUtils.cs" />
     <Compile Include="IoCFactory.cs" />
     <Compile Include="Model\IdentEntity.cs" />
     <Compile Include="Model\IEntity.cs" />
@@ -79,7 +79,7 @@
     <Compile Include="Model\Identity\CustomIdentity.cs" />
     <Compile Include="Model\Identity\CustomPermissions.cs" />
     <Compile Include="Model\Identity\CustomPrincipal.cs" />
-    <Compile Include="Model\Identity\Roles.cs" />
+    <Compile Include="Model\Identity\IdentityRoles.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

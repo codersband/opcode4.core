@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Runtime.Serialization;
 using System.Security.Principal;
 using opcode4.core.Model.Log;
@@ -10,13 +9,13 @@ namespace opcode4.core.Model.Identity
     public class CustomIdentity : IIdentity
     {
         [DataMember] 
-        private readonly ulong _actorId;
+        private readonly long _actorId;
 
         [DataMember]
         private readonly string _actorName = string.Empty;
 
         [DataMember]
-        private readonly ulong _providerId;
+        private readonly long _providerId;
 
         [DataMember]
         private readonly ArrayList _rolesList = new ArrayList();
@@ -28,9 +27,9 @@ namespace opcode4.core.Model.Identity
 
         string IIdentity.AuthenticationType => "custom";
 
-        public ulong Id => _actorId;
+        public long Id => _actorId;
         public string Name => _actorName;
-        public ulong ProviderId => _providerId;
+        public long ProviderId => _providerId;
 
         internal bool IsInRole(string role) { return _rolesList.Contains(role); }
 
@@ -42,7 +41,7 @@ namespace opcode4.core.Model.Identity
             this._actorName = actorName;
         }
 
-        public CustomIdentity(ulong id, string actorName, string[] roles)
+        public CustomIdentity(long id, string actorName, string[] roles)
         {
             this._actorId = id;
             this._actorName = actorName;
@@ -51,7 +50,7 @@ namespace opcode4.core.Model.Identity
             this._rolesList.AddRange(roles);
         }
 
-        public CustomIdentity(ulong id, string actorName, ulong providerId, string[] roles)
+        public CustomIdentity(long id, string actorName, long providerId, string[] roles)
         {
             this._actorId = id;
             this._actorName = actorName;

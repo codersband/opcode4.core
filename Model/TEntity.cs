@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Runtime.Serialization;
-using opcode4.core.Data;
 
 namespace opcode4.core.Model
 {

@@ -27,8 +27,14 @@ namespace opcode4.core.Model.Identity
 
 
     [DataContract]
-    public class Roles : Roles<Roles.Items>
+    public class IdentityRoles : Roles<IdentityRoles.Items>
     {
+        public const string ROOT = "ROOT";
+        public const string ADMINISTRATOR = "ADMINISTRATOR";
+        public const string SERVICE = "SERVICE";
+        public const string USER = "USER";
+        public const string HANDSET = "HANDSET";
+
         [Flags]
         [DataContract]
         public enum Items
@@ -38,20 +44,11 @@ namespace opcode4.core.Model.Identity
             [EnumMember]
             ADMINISTRATOR = 2,
             [EnumMember]
-            OPERATOR = 4,
+            SERVICE = 4,
             [EnumMember]
             USER = 8,
             [EnumMember]
             HANDSET = 16,
-            [EnumMember]
-            SERVICE = 32,
-            [EnumMember]
-            TRACE = 64,
-            [EnumMember]
-            TALKMAN = 128,
-
-            [EnumMember]
-            EXTENTION = 1024
         }
 
         public static List<RoleItem> Parse(Items roles)
@@ -75,9 +72,6 @@ namespace opcode4.core.Model.Identity
                         case Items.ADMINISTRATOR:
                             role.Permissions = CustomPermissions.Write | CustomPermissions.Read | CustomPermissions.Execute;
                             break;
-                        case Items.OPERATOR:
-                            role.Permissions = CustomPermissions.Write | CustomPermissions.Read | CustomPermissions.Execute;
-                            break;
                         case Items.USER:
                             role.Permissions = CustomPermissions.Read;
                             break;
@@ -86,11 +80,6 @@ namespace opcode4.core.Model.Identity
                             break;
                         case Items.SERVICE:
                             role.Permissions = CustomPermissions.Write | CustomPermissions.Read;
-                            break;
-                        case Items.TRACE:
-                            role.Permissions = CustomPermissions.Write;
-                            break;
-                        case Items.EXTENTION: 
                             break;
                     }
                     result.Add(role);
