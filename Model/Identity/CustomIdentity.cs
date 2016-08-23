@@ -12,7 +12,7 @@ namespace opcode4.core.Model.Identity
         private readonly long _actorId;
 
         [DataMember]
-        private readonly string _actorName = string.Empty;
+        private readonly string _actorName = "anonymous";
 
         [DataMember]
         private readonly long _providerId;
@@ -25,7 +25,7 @@ namespace opcode4.core.Model.Identity
 
         bool IIdentity.IsAuthenticated => (_rolesList.Count > 0);
 
-        string IIdentity.AuthenticationType => "custom";
+        string IIdentity.AuthenticationType => "opcode.custom";
 
         public long Id => _actorId;
         public string Name => _actorName;

@@ -36,6 +36,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -45,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cache\MemoryCacheProvider.cs" />
     <Compile Include="Data\Criterias\Criteria.cs" />
     <Compile Include="Data\Criterias\CustomPagingCriteria.cs" />
     <Compile Include="Data\Criterias\ICriteria.cs" />
@@ -54,6 +56,7 @@
     <Compile Include="Data\ITransaction.cs" />
     <Compile Include="Data\Provider\IProviderable.cs" />
     <Compile Include="Data\Provider\ProviderEntity.cs" />
+    <Compile Include="Exceptions\ErrorDataDto.cs" />
     <Compile Include="Helpers\Extensions.cs" />
     <Compile Include="Helpers\JsonConverters\UnixDateTimeConverter.cs" />
     <Compile Include="Helpers\Retry.cs" />
@@ -83,9 +86,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\opcode.ioc.lightinject\opcode.ioc.lightinject.csproj">
-      <Project>{9d95499c-19c8-44ed-94c2-520ffb05a791}</Project>
-      <Name>opcode.ioc.lightinject</Name>
+    <ProjectReference Include="..\opcode4.ioc.lightinject\opcode4.ioc.lightinject.csproj">
+      <Project>{9D95499C-19C8-44ED-94C2-520FFB05A791}</Project>
+      <Name>opcode4.ioc.lightinject</Name>
     </ProjectReference>
     <ProjectReference Include="..\opcode4.utilities\opcode4.utilities.csproj">
       <Project>{FBBA352B-37A6-45FB-BC0C-E3FC52FFE643}</Project>
